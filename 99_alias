@@ -3,7 +3,6 @@ alias doc="cd ~/Documents"
 alias down="cd ~/Downloads"
 alias sc="script/console"
 alias ss="script/server"
-alias hg="hellanzb.py enqueuenewzbin"
 alias pi="sudo port -v install"
 alias mr="mysql5 -u root"
 alias mar="mysqladmin5 -u root"
@@ -15,7 +14,55 @@ alias jsonget="curl -X GET -H 'Accept: application/json'"
 alias xmlpost="curl -X POST -H 'Accept: application/xml'"
 alias xmlput="curl -X PUT -H 'Accept: application/xml'"
 alias xmldelete="curl -X DELETE -H 'Accept: application/xml'"
-alias d1="ssh bliles@dev01.it"
 alias sr="touch tmp/restart.txt"
-alias cb="cap -s user=bliles"
-alias gup="git fetch origin master && git rebase origin/master"
+
+#
+# Ruby aliases
+#
+alias sg='./script/generate'
+alias ftn="./script/cucumber -r features features/**/*.feature -n $1"
+
+#
+# Selenium start
+#
+alias startselenium="java -jar vendor/selenium-rc/selenium-server.jar -ensureCleanSession -multiWindow -browserSessionReuse"
+
+#
+# Macports Apache/MySQL Start/Stop 
+#
+alias startmysql='sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist'
+alias stopmysql='sudo launchctl unload /Library/LaunchDaemons/org.macports.mysql5.plist'
+alias restartmysql='stopmysql && startmysql'
+
+alias startpgsql='sudo launchctl load -w /Library/LaunchDaemons/org.macports.postgresql84-server.plist'
+alias stoppgsql='sudo launchctl unload /Library/LaunchDaemons/org.macports.postgresql84-server.plist'
+alias restartpgsql='stoppgsql && startpgsql'
+
+alias startapache2='sudo launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist'
+alias stopapache2='sudo launchctl unload /Library/LaunchDaemons/org.macports.apache2.plist'
+alias restartapache2='stopapache2 && startapache2'
+
+alias startcouchdb='sudo launchctl load -w /opt/local/etc/LaunchDaemons/org.macports.CouchDB/org.macports.CouchDB.plist'
+alias stopcouchdb='sudo launchctl unload /opt/local/etc/LaunchDaemons/org.macports.CouchDB/org.macports.CouchDB.plist'
+alias restartcouchdb='stopcouchdb && startcouchdb'
+
+#
+# Multiruby
+# For this to work you need to set CURRENT_RUBY, RUBY_EE_PATH, RUBY_19_PATH and
+# JRUBY_HOME in 01_path
+#
+alias rdefault='sudo rm -f ${CURRENT_RUBY} && rehash'
+alias r18='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${RUBY_EE_PATH} ${CURRENT_RUBY} && rehash'
+alias r19='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${RUBY_19_PATH} ${CURRENT_RUBY} && rehash'
+alias rjruby='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${JRUBY_HOME} ${CURRENT_RUBY} && rehash'
+
+# 
+# Mac OS X DNS Cache shortcuts
+#
+alias cleardns="dscacheutil -flushcache"
+alias showdns="dscacheutil -cachedump -entries Host"
+
+
+function psg {
+  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+}

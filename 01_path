@@ -3,3 +3,76 @@ path=(~/bin /opt/local/bin $path)
 
 # Allow MacPorts man pages
 manpath=($manpath /opt/local/man)
+
+#
+# Set Locale
+#
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+#
+# Set JAVA Paths
+#
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+export ANT_HOME="/Developer/Java/ant"
+# export JAVA_LIBS="/my/other/java/libs/directory"
+# export CLASSPATH=$JAVA_LIBS/junit4.4/junit-4.4.jar
+
+#
+# Oracle instant client setup...
+#
+export DYLD_LIBRARY_PATH="/Users/jonathantron/Development/oracle/instantclient_10_2"
+export SQLPATH="/Users/jonathantron/Development/oracle/instantclient_10_2"
+export TNS_ADMIN="/Users/jonathantron/Development/oracle/config"
+export NLS_LANG="AMERICAN_AMERICA.UTF8"
+export PATH=$PATH:$DYLD_LIBRARY_PATH
+
+#
+# For multiruby setup (see 99_alias)
+#
+export CURRENT_RUBY="/opt/current-ruby"
+export RUBY_EE_PATH="/opt/ruby-ee"
+export RUBY_19_PATH="/opt/ruby1.9"
+export JRUBY_HOME="/opt/jruby"
+
+#
+# Multi-sphinx ? :D
+#
+export SPHINX="/opt/sphinx-0.9.8.1/"
+
+#
+# Postgresql
+#
+export PG_BIN_DIR="/opt/local/lib/postgresql84/bin/"
+
+#
+# Set Path
+#
+export PATH=${CURRENT_RUBY}/bin:${SPHINX}/bin:~/bin:/opt/local/bin:${PG_BIN_DIR}:/usr/local/bin:$PATH
+export CLICOLOR=1
+
+#
+# Set the default editor and git pager as TextMate
+#
+export EDITOR="mate --wait -l 1"
+
+# Set git env
+#export GIT_PAGER="mate"
+
+#
+# Set default pager
+#
+#export PAGER="more"
+
+#
+# Color Grep 
+#
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;33'
+
+# -- start rip config -- #
+RIPDIR=/Users/jon/.rip
+RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
+PATH="$PATH:$RIPDIR/active/bin"
+export RIPDIR RUBYLIB PATH
+# -- end rip config -- #
