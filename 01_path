@@ -2,4 +2,77 @@
 path=(~/bin /opt/local/bin $path)
 
 # Allow MacPorts man pages
-manpath=($manpath /opt/local/man)
+manpath=($manpath /opt/local/man /usr/share/man)
+
+#
+# Set Locale
+#
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+#
+# Set Libs Paths
+#
+export JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
+export ANT_HOME="/Developer/Java/ant"
+
+# export JAVA_LIBS="/Users/jonathantron/Development/libs/java"
+# export CLASSPATH=$JAVA_LIBS/junit4.4/junit-4.4.jar
+
+export JRUBY_HOME="/opt/jruby"
+
+export SPHINX="/opt/sphinx-0.9.8.1/"
+
+#
+# Oracle instant client setup...
+#
+export DYLD_LIBRARY_PATH="/Users/jonathantron/Development/oracle/instantclient_10_2"
+export SQLPATH="/Users/jonathantron/Development/oracle/instantclient_10_2"
+export TNS_ADMIN="/Users/jonathantron/Development/oracle/config"
+export NLS_LANG="AMERICAN_AMERICA.UTF8"
+export PATH=$PATH:$DYLD_LIBRARY_PATH
+
+export PG_BIN_DIR="/opt/local/lib/postgresql84/bin/"
+
+#
+# Set Path
+#
+export PATH=${SPHINX}/bin:~/bin:/opt/local/bin:${PG_BIN_DIR}:/usr/local/bin:$PATH
+export CLICOLOR=1
+
+#
+# Set the default editor and git pager as TextMate
+#
+export EDITOR="mate --wait -l 1"
+
+# Set git env
+#export GIT_PAGER="mate"
+
+#
+# Set default pager
+#
+#export PAGER="more"
+
+#
+# Color Grep 
+#
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;33'
+
+# -- start rip config -- #
+RIPDIR=/Users/jonathantron/.rip
+RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
+PATH="$PATH:$RIPDIR/active/bin"
+export RIPDIR RUBYLIB PATH
+# -- end rip config -- #
+
+PANDA_VERSION=1.6.2
+PANDA_PATH=/Applications/Panda3D/$PANDA_VERSION
+if [ -d $PANDA_PATH ]
+then
+    export PATH=$PANDA_PATH/bin:$PATH
+    export PYTHONPATH=$PANDA_PATH/lib:$PYTHONPATH
+    export DYLD_LIBRARY_PATH=$PANDA_PATH/lib:$DYLD_LIBRARY_PATH
+    export MAYA_SCRIPT_PATH=$PANDA_PATH/plugins:$MAYA_SCRIPT_PATH
+    export MAYA_PLUG_IN_PATH=$PANDA_PATH/plugins:$MAYA_PLUG_IN_PATH
+fi
