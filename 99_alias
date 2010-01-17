@@ -28,40 +28,29 @@ alias ftn="./script/cucumber -r features features/**/*.feature -n $1"
 alias startselenium="java -jar vendor/selenium-rc/selenium-server.jar -ensureCleanSession -multiWindow -browserSessionReuse"
 
 #
-# Macports Apache/MySQL Start/Stop 
+# Homebrew servers start/stop scripts
 #
-alias startmysql='sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist'
-alias stopmysql='sudo launchctl unload /Library/LaunchDaemons/org.macports.mysql5.plist'
+alias startmysql='launchctl load -w ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
+alias stopmysql='launchctl unload ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
 alias restartmysql='stopmysql && startmysql'
 
-alias startpgsql='sudo launchctl load -w /Library/LaunchDaemons/org.macports.postgresql84-server.plist'
-alias stoppgsql='sudo launchctl unload /Library/LaunchDaemons/org.macports.postgresql84-server.plist'
+alias startpgsql='launchctl load -w ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
+alias stoppgsql='launchctl unload ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
 alias restartpgsql='stoppgsql && startpgsql'
 
-alias startapache2='sudo launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist'
-alias stopapache2='sudo launchctl unload /Library/LaunchDaemons/org.macports.apache2.plist'
-alias restartapache2='stopapache2 && startapache2'
+alias startredis='redis-server ~/.homebrew/etc/redis.conf'
+alias stopredis='kill `cat ~/.homebrew/var/run/redis.pid`'
+alias restartredis='stopredis && startredis'
 
-alias startcouchdb='sudo launchctl load -w /opt/local/etc/LaunchDaemons/org.macports.CouchDB/org.macports.CouchDB.plist'
-alias stopcouchdb='sudo launchctl unload /opt/local/etc/LaunchDaemons/org.macports.CouchDB/org.macports.CouchDB.plist'
-alias restartcouchdb='stopcouchdb && startcouchdb'
-
-#
-# Multiruby
-# For this to work you need to set CURRENT_RUBY, RUBY_EE_PATH, RUBY_19_PATH and
-# JRUBY_HOME in 01_path
-#
-alias rdefault='sudo rm -f ${CURRENT_RUBY} && rehash'
-alias r18='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${RUBY_EE_PATH} ${CURRENT_RUBY} && rehash'
-alias r19='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${RUBY_19_PATH} ${CURRENT_RUBY} && rehash'
-alias rjruby='sudo rm -f ${CURRENT_RUBY} && sudo ln -s ${JRUBY_HOME} ${CURRENT_RUBY} && rehash'
+alias startmongodb='launchctl load -w ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
+alias stopmongodb='launchctl unload ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
+alias restartmongodb='stopmongodb && startmongodb'
 
 # 
 # Mac OS X DNS Cache shortcuts
 #
 alias cleardns="dscacheutil -flushcache"
 alias showdns="dscacheutil -cachedump -entries Host"
-
 
 function psg {
   ps wwwaux | egrep "($1|%CPU)" | grep -v grep
