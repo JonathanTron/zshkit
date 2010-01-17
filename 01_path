@@ -1,8 +1,7 @@
-# I want /opt/local/bin to take precedence
-path=(~/bin /opt/local/bin $path)
-
-# Allow MacPorts man pages
-manpath=($manpath /opt/local/man)
+#
+# Add Homebrew man path
+#
+manpath=($manpath ~/.homebrew/share/man)
 
 #
 # Set Locale
@@ -28,12 +27,11 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 export PATH=$PATH:$DYLD_LIBRARY_PATH
 
 #
-# For multiruby setup (see 99_alias)
+# Cappucino
 #
-export CURRENT_RUBY="/opt/current-ruby"
-export RUBY_EE_PATH="/opt/ruby-ee"
-export RUBY_19_PATH="/opt/ruby1.9"
-export JRUBY_HOME="/opt/jruby"
+export NARWHAL_ENGINE=jsc
+export CAPP_BUILD="/Users/jon/Development/02_Source_Github/cappuccino_framework"
+export PATH="/usr/local/narwhal/bin:$PATH"
 
 #
 # Multi-sphinx ? :D
@@ -46,9 +44,14 @@ export SPHINX="/opt/sphinx-0.9.8.1/"
 export PG_BIN_DIR="/opt/local/lib/postgresql84/bin/"
 
 #
+# Homebrew
+#
+export HOMEBREW_PATH="/Users/jon/.homebrew"
+
+#
 # Set Path
 #
-export PATH=${CURRENT_RUBY}/bin:${SPHINX}/bin:~/bin:/opt/local/bin:${PG_BIN_DIR}:/usr/local/bin:$PATH
+export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:${SPHINX}/bin:~/bin:/opt/local/bin:${PG_BIN_DIR}:$PATH
 export CLICOLOR=1
 
 #
@@ -76,3 +79,15 @@ RUBYLIB="$RUBYLIB:$RIPDIR/active/lib"
 PATH="$PATH:$RIPDIR/active/bin"
 export RIPDIR RUBYLIB PATH
 # -- end rip config -- #
+
+
+PANDA_VERSION=1.6.2
+PANDA_PATH=/Applications/Panda3D/$PANDA_VERSION
+if [ -d $PANDA_PATH ]
+then
+    export PATH=$PANDA_PATH/bin:$PATH
+    export PYTHONPATH=$PANDA_PATH/lib:$PYTHONPATH
+    export DYLD_LIBRARY_PATH=$PANDA_PATH/lib:$DYLD_LIBRARY_PATH
+    export MAYA_SCRIPT_PATH=$PANDA_PATH/plugins:$MAYA_SCRIPT_PATH
+    export MAYA_PLUG_IN_PATH=$PANDA_PATH/plugins:$MAYA_PLUG_IN_PATH
+fi
