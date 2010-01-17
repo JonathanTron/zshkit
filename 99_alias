@@ -3,7 +3,6 @@ alias doc="cd ~/Documents"
 alias down="cd ~/Downloads"
 alias sc="script/console"
 alias ss="script/server"
-alias hg="hellanzb.py enqueuenewzbin"
 alias pi="sudo port -v install"
 alias mr="mysql5 -u root"
 alias mar="mysqladmin5 -u root"
@@ -15,7 +14,44 @@ alias jsonget="curl -X GET -H 'Accept: application/json'"
 alias xmlpost="curl -X POST -H 'Accept: application/xml'"
 alias xmlput="curl -X PUT -H 'Accept: application/xml'"
 alias xmldelete="curl -X DELETE -H 'Accept: application/xml'"
-alias d1="ssh bliles@dev01.it"
 alias sr="touch tmp/restart.txt"
-alias cb="cap -s user=bliles"
-alias gup="git fetch origin master && git rebase origin/master"
+
+#
+# Ruby aliases
+#
+alias sg='./script/generate'
+alias ftn="./script/cucumber -r features features/**/*.feature -n $1"
+
+#
+# Selenium start
+#
+alias startselenium="java -jar vendor/selenium-rc/selenium-server.jar -ensureCleanSession -multiWindow -browserSessionReuse"
+
+#
+# Homebrew servers start/stop scripts
+#
+alias startmysql='launchctl load -w ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
+alias stopmysql='launchctl unload ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
+alias restartmysql='stopmysql && startmysql'
+
+alias startpgsql='launchctl load -w ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
+alias stoppgsql='launchctl unload ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
+alias restartpgsql='stoppgsql && startpgsql'
+
+alias startredis='redis-server ~/.homebrew/etc/redis.conf'
+alias stopredis='kill `cat ~/.homebrew/var/run/redis.pid`'
+alias restartredis='stopredis && startredis'
+
+alias startmongodb='launchctl load -w ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
+alias stopmongodb='launchctl unload ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
+alias restartmongodb='stopmongodb && startmongodb'
+
+# 
+# Mac OS X DNS Cache shortcuts
+#
+alias cleardns="dscacheutil -flushcache"
+alias showdns="dscacheutil -cachedump -entries Host"
+
+function psg {
+  ps wwwaux | egrep "($1|%CPU)" | grep -v grep
+}
