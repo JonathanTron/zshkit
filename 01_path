@@ -1,7 +1,7 @@
 #
 # Add Homebrew man path
 #
-manpath=($manpath ~/.homebrew/share/man)
+manpath=($manpath $HOME/.homebrew/share/man)
 
 #
 # Set Locale
@@ -42,7 +42,7 @@ export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
 #
 # Set Path
 #
-export PATH=~/bin:$PATH
+export PATH=$HOME/bin:$PATH
 export CLICOLOR=1
 
 #
