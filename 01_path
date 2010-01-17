@@ -34,24 +34,15 @@ export CAPP_BUILD="/Users/jon/Development/02_Source_Github/cappuccino_framework"
 export PATH="/usr/local/narwhal/bin:$PATH"
 
 #
-# Multi-sphinx ? :D
-#
-export SPHINX="/opt/sphinx-0.9.8.1/"
-
-#
-# Postgresql
-#
-export PG_BIN_DIR="/opt/local/lib/postgresql84/bin/"
-
-#
 # Homebrew
 #
 export HOMEBREW_PATH="/Users/jon/.homebrew"
+export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
 
 #
 # Set Path
 #
-export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:${SPHINX}/bin:~/bin:/opt/local/bin:${PG_BIN_DIR}:$PATH
+export PATH=~/bin:$PATH
 export CLICOLOR=1
 
 #
