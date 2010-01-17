@@ -1,0 +1,8 @@
+if [ "$TERM" != "dumb" ]; then
+  export LS_OPTIONS='--color=auto'
+  eval `dircolors ~/.dir_colors`
+fi
+ 
+# alias
+alias ls='ls $LS_OPTIONS -hF'
+alias ll='ls $LS_OPTIONS -lAhF'
