@@ -1,7 +1,7 @@
 #
 # Add Homebrew man path
 #
-manpath=($manpath $HOME/.homebrew/share/man)
+manpath=($manpath /usr/share/man $HOME/.homebrew/share/man)
 
 #
 # Set Locale
