@@ -30,27 +30,35 @@ alias startselenium="java -jar vendor/selenium-rc/selenium-server.jar -ensureCle
 #
 # Homebrew servers start/stop scripts
 #
-alias startmysql='launchctl load -w ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
-alias stopmysql='launchctl unload ~/.homebrew/Cellar/mysql/5.1.41/com.mysql.mysqld.plist'
-alias restartmysql='stopmysql && startmysql'
+if [[ -x `which brew` ]]; then
+  alias startmysql='launchctl load -w `brew list mysqld | grep .plist`'
+  alias stopmysql='launchctl unload `brew list mysqld | grep .plist`'
+  alias restartmysql='stopmysql && startmysql'
 
-alias startpgsql='launchctl load -w ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
-alias stoppgsql='launchctl unload ~/.homebrew/Cellar/postgresql/8.4.1/org.postgresql.postgres.plist'
-alias restartpgsql='stoppgsql && startpgsql'
+  alias startpgsql='launchctl load -w `brew list postgresql | grep .plist`'
+  alias stoppgsql='launchctl unload `brew list postgresql | grep .plist`'
+  alias restartpgsql='stoppgsql && startpgsql'
 
-alias startredis='redis-server ~/.homebrew/etc/redis.conf'
-alias stopredis='kill `cat ~/.homebrew/var/run/redis.pid`'
-alias restartredis='stopredis && startredis'
+  alias startredis='redis-server ~/.homebrew/etc/redis.conf'
+  alias stopredis='kill `cat ~/.homebrew/var/run/redis.pid`'
+  alias restartredis='stopredis && startredis'
 
-alias startmongodb='launchctl load -w ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
-alias stopmongodb='launchctl unload ~/.homebrew/Cellar/mongodb/1.2.0-x86_64/org.mongodb.mongod.plist'
-alias restartmongodb='stopmongodb && startmongodb'
+  alias startmongodb='launchctl load -w `brew list mongodb | grep .plist`'
+  alias stopmongodb='launchctl unload `brew list mongodb | grep .plist`'
+  alias restartmongodb='stopmongodb && startmongodb'
+
+  alias startmongodb-unstable='launchctl load -w `brew list mongodb-unstable | grep .plist`'
+  alias stopmongodb-unstable='launchctl unload `brew list mongodb-unstable | grep .plist`'
+  alias restartmongodb-unstable='stopmongodb-unstable && startmongodb-unstable'
+fi
 
 # 
 # Mac OS X DNS Cache shortcuts
 #
-alias cleardns="dscacheutil -flushcache"
-alias showdns="dscacheutil -cachedump -entries Host"
+if [[ -x `which dscacheutil` ]]; then
+  alias cleardns="dscacheutil -flushcache"
+  alias showdns="dscacheutil -cachedump -entries Host"
+fi
 
 function psg {
   ps wwwaux | egrep "($1|%CPU)" | grep -v grep

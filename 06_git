@@ -3,7 +3,9 @@ if [[ -x `which git` ]]; then
 	alias g=git
 	alias gd='git diff'
 	alias gs='git status'
- 
+  function glogshort (){
+    git log $1..HEAD --pretty='%h - %an - %s' --no-merges
+  }
 	function git-branch-name () {
 		git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
 	}
@@ -69,8 +71,9 @@ if [[ -x `which git` ]]; then
 	}
 fi
 
-PAIR_AUTHOR_JOSEPH="Jonathan Tron"
-PAIR_AUTHOR_JONATHAN="Joseph Halter"
+PAIR_AUTHOR_JOSEPH="Joseph Halter"
+PAIR_AUTHOR_JONATHAN="Jonathan Tron"
+PAIR_AUTHOR_GUILLAUME="Guillaume Hain"
 
 pair() {
   local name email args initials author ret write
@@ -105,7 +108,7 @@ pair() {
     email="$email+`echo "$initials"|tr A-Z a-z`"
   done
   name="`echo $name|sed -e 's/^ *and *//'`"
-  email="$email@akiraweb.lu"
+  email="$email@kneip.com"
   case "$ret" in
     unsetenv) unset GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL
       [ ! -n "$write" ] || rm -f "$HOME/.pairrc"

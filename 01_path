@@ -1,7 +1,9 @@
 #
 # Add Homebrew man path
 #
-manpath=($manpath $HOME/.homebrew/share/man)
+if [[ -x `which brew` ]]; then
+  manpath=($HOME/.homebrew/share/man /usr/share/man /usr/local/share/man $manpath )
+fi
 
 #
 # Set Locale
@@ -36,8 +38,17 @@ export PATH="/usr/local/narwhal/bin:$PATH"
 #
 # Homebrew
 #
-export HOMEBREW_PATH=$HOME/.homebrew
-export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
+if [[ -x `which brew` ]]; then
+  export HOMEBREW_PATH=$HOME/.homebrew
+  export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
+fi
+
+#
+# Python
+#
+if [[ -x `which brew` ]]; then
+  export PYTHONPATH=${HOMEBREW_PATH}/lib/python2.6/site-packages
+fi
 
 #
 # Set Path
