@@ -2,7 +2,7 @@
 # Add Homebrew man path
 #
 if [[ -x `which brew` ]]; then
-  manpath=($HOME/.homebrew/share/man /usr/share/man /usr/local/share/man $manpath )
+  manpath=(`brew --prefix`/share/man /usr/share/man /usr/local/share/man $manpath )
 fi
 
 #
