@@ -38,10 +38,8 @@ export PATH="/usr/local/narwhal/bin:$PATH"
 #
 # Homebrew
 #
-if [[ -x `which brew` ]]; then
-  export HOMEBREW_PATH=$HOME/.homebrew
-  export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
-fi
+export HOMEBREW_PATH=$HOME/.homebrew
+export PATH=${HOMEBREW_PATH}/bin:${HOMEBREW_PATH}/sbin:$PATH
 
 #
 # Python
