@@ -6,6 +6,9 @@ if [[ -x `which git` ]]; then
   function glogshort (){
     git log $1..HEAD --pretty='%h - %an - %s' --no-merges
   }
+  function gweeklog (){
+    git log --format='%cD - %aN - %s' --author=$1 --after='10 days' --no-merges --reverse
+  }
 	function git-branch-name () {
 		git branch 2> /dev/null | grep '^\*' | sed 's/^\*\ //'
 	}
